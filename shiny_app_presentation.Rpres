@@ -1,0 +1,68 @@
+Demonstrating Central Limit theorem
+========================================================
+author: Luoyan yong
+date: 18-04-2021
+autosize: true
+
+Small Skewed population
+========================================================
+a population size 20 with skewed distribution
+
+```{r, echo = FALSE}
+t <- rexp(20, 0.2)
+
+hist(t, xlab = "value", main = "theoretical exponential distribution")
+         abline(v = 1/0.2, col = "blue") +
+            title(sub = "The frequency histogram of the population dsitribution is plotted along with a vertical blue line indicating the population means")
+```
+
+Small sample 
+========================================================
+If we now take a sample of that population, we will notice that the samples are not
+distributed around the mean and not normally distribured.
+
+```{r, echo = FALSE}
+sample <- c()
+for(i in 1:20){
+      sample <- c(sample, mean(rexp(40, 0.2)))
+}
+
+hist(sample, xlab = "value", main = "sample exponential distribution")
+      abline(v = 1/0.2, col = "blue") +
+         title(sub = "The frequency histogram of the population dsitribution is plotted along with
+a vertical blue line indicating the population means")
+      
+ggpubr::ggqqplot(sample)+ 
+  ggplot2::labs(title = "Sample distribution vs normal distribution")
+```
+
+Larger skewed population
+========================================================
+A population of size 400 with skewed distribution
+```{r, echo = FALSE}
+t <- rexp(400, 0.2)
+
+hist(t, xlab = "value", main = "theoretical exponential distribution")
+         abline(v = 1/0.2, col = "blue") +
+            title(sub = "The frequency histogram of the population dsitribution is plotted along with a vertical blue line indicating the population means")
+         
+```
+
+Large sample 
+========================================================
+If we now take a sample of that population, we will notice that the samples are 
+distributed around the mean. Therefore, CLT states that given a large number of samples
+drawn, distribution of sample becomes normally distributed, even wehn population is skewed.
+```{r, echo = FALSE}
+sample <- c()
+for(i in 1:400){
+      sample <- c(sample, mean(rexp(40, 0.2)))
+}
+
+hist(sample, xlab = "value", main = "sample exponential distribution")
+      abline(v = 1/0.2, col = "blue") +
+         title(sub = "The frequency histogram of the population dsitribution is plotted along with
+a vertical blue line indicating the population means")
+```
+
+
